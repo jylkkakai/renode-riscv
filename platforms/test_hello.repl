@@ -1,0 +1,31 @@
+
+
+
+
+
+dram: Memory.MappedMemory @ sysbus 0x000000
+    size: 0x10000000
+
+
+uart0: UART.NS16550 @ sysbus 0x10000000
+    IRQ -> plic@3
+
+cpu: CPU.RiscV64 @ sysbus
+    cpuType: "rv64imafdc"
+    privilegeArchitecture: PrivilegeArchitecture.Priv1_10
+    timeProvider: clint
+
+plic: IRQControllers.PlatformLevelInterruptController @ sysbus 0xC0000000
+    0 -> cpu@11
+    numberOfSources: 52
+    numberOfContexts: 1
+
+clint: IRQControllers.CoreLevelInterruptor  @ sysbus 0x020000000
+    [0,1] -> cpu@[3,7]
+    frequency: 10000000
+
+gpio_out: GPIOPort.LiteX_GPIO @ sysbus 0x60000000
+    type: Type.Out
+    0 -> led@0
+
+led : Miscellaneous.LED @ gpio_out 0

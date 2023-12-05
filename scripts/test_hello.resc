@@ -1,0 +1,29 @@
+:name: RISC-V platform 64-bit
+:description: Runs test.
+
+$name?="Test"
+
+using sysbus
+mach create $name
+machine LoadPlatformDescription @platforms/test_hello.repl
+
+sysbus LogPeripheralAccess sysbus.uart0
+sysbus LogAllPeripheralsAccess true
+logLevel -1 sysbus.uart0
+logLevel -1 sysbus.cpu
+showAnalyzer sysbus.uart0
+sysbus.cpu LogFunctionNames true
+
+sysbus AddWatchpointHook 0x5f8 Word Write "print 'Write word into 0x5f8'"
+sysbus AddWatchpointHook 0x5f8 DoubleWord Write "print 'Write double word into 0x5f8'"
+sysbus AddWatchpointHook 0x5f8 Word Read "print 'Read from 0x5f8'"
+
+$bin?=@test_hello.elf
+
+
+macro reset
+"""
+    sysbus LoadELF $bin
+"""
+
+runMacro $reset

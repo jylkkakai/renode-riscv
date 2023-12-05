@@ -1,0 +1,21 @@
+:name: RISC-V platform 64-bit
+:description: Simple uart
+
+$name?="Uart"
+
+using sysbus
+mach create $name
+machine LoadPlatformDescription @platforms/test_hello.repl
+
+$bin?=@uart_simple.elf
+logLevel -1 sysbus.uart0
+showAnalyzer sysbus.uart0
+:sysbus.cpu LogFunctionNames true
+
+
+macro reset
+"""
+    sysbus LoadELF $bin
+"""
+
+runMacro $reset

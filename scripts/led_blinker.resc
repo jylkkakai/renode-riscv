@@ -1,0 +1,27 @@
+:name: RISC-V platform 64-bit
+:description: LED blinker
+
+$name?="LED"
+
+using sysbus
+mach create $name
+machine LoadPlatformDescription @platforms/test_hello.repl
+:machine LoadPlatformDescription @platforms/test_hello_32.repl
+
+
+logLevel -1 sysbus.uart0
+:showAnalyzer sysbus.uart0
+:sysbus.cpu LogFunctionNames true
+
+logLevel -1 sysbus.gpio_out.led
+
+$bin?=@led_blinker.elf
+:$bin?=@c_led_blinker_32.elf
+machine EnableProfiler "led_blinker.dump"
+
+macro reset
+"""
+    sysbus LoadELF $bin
+"""
+
+runMacro $reset
