@@ -17,7 +17,7 @@ sysbus AddWatchpointHook 0x5f8 Word Write "print 'Write word'"
 sysbus AddWatchpointHook 0x5f8 Word Read ""
 logLevel -1 sysbus.gpio_out.led
 
-$bin?=@test.elf
+$bin?=@build/test.elf
 
 
 macro reset

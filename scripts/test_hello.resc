@@ -18,7 +18,7 @@ sysbus AddWatchpointHook 0x5f8 Word Write "print 'Write word into 0x5f8'"
 sysbus AddWatchpointHook 0x5f8 DoubleWord Write "print 'Write double word into 0x5f8'"
 sysbus AddWatchpointHook 0x5f8 Word Read "print 'Read from 0x5f8'"
 
-$bin?=@test_hello.elf
+$bin?=@build/test_hello.elf
 
 
 macro reset

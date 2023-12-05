@@ -15,9 +15,9 @@ logLevel -1 sysbus.uart0
 
 logLevel -1 sysbus.gpio_out.led
 
-$bin?=@led_blinker.elf
+$bin?=@build/led_blinker.elf
 :$bin?=@c_led_blinker_32.elf
-machine EnableProfiler "led_blinker.dump"
+:machine EnableProfiler "led_blinker.dump"
 
 macro reset
 """

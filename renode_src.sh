@@ -1,2 +1,5 @@
+#!/bin/bash
 
-export PATH=/opt/soc/work/jylkka/renode_portable:$PATH
+ROOT=$(pwd)
+echo $ROOT
+export PATH=$ROOT/renode_portable:$PATH

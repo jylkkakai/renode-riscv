@@ -10,8 +10,8 @@ hello:
 	riscv64-unknown-elf-gcc -nostartfiles -T riscv64-virt.ld -o build/test_hello.elf build/test_hello.o crt0.s
 
 led_blinker:
-	riscv64-unknown-elf-gcc -O0 -c -ffunction-sections -fdata-sections -o build/led_blinker_gdb.o source/led_blinker.c
-	riscv64-unknown-elf-gcc -nostartfiles -T riscv64-virt.ld -o build/led_blinker_gdb.elf build/led_blinker_gdb.o crt0.s
+	riscv64-unknown-elf-gcc -O0 -c -ffunction-sections -fdata-sections -o build/led_blinker.o source/led_blinker.c
+	riscv64-unknown-elf-gcc -nostartfiles -T riscv64-virt.ld -o build/led_blinker.elf build/led_blinker.o crt0.s
 
 led_blinker_gdb:
 	riscv64-unknown-elf-gcc -g -O0 -c -ffunction-sections -fdata-sections -o build/led_blinker.o source/led_blinker.c
