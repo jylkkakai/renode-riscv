@@ -17,5 +17,7 @@ macro reset
 """
     sysbus LoadELF $bin
 """
-
+machine GetTimeSourceInfo
 runMacro $reset
+machine GetTimeSourceInfo
+machine Pause
